@@ -58,3 +58,4 @@
 - **Redis como mensageria e banco NoSQL**: Optei por utilizar o Redis tanto para mensageria quanto para armazenamento de logs, reduzindo a complexidade do build. Outra alternativa seria utilizar MongoDB com Mongoose.
 - **Uso do Koa.js**: Escolhi o Koa.js em vez do Express por ser mais leve e possuir menos dependências, o que simplifica a aplicação.
 - **Timezone dos campos de data**: Os campos `data_hora_criacao` e `data_hora_processamento` retornam com timezone, ou seja, por padrão estarão em **UTC-0**.
+- **Persistência dos logs**: Para não aumentar a complexidade do build, não montei um volume para persistência dos logs criados, sendo assim após o desligamento dos containers os logs serão zerados.
