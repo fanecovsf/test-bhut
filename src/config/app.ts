@@ -17,10 +17,10 @@ export default class App {
         // Init jobs
         await initJobs()
 
+        this.middlewares()
+
         // Init Routes
         initRoutes(this)
-
-        this.middlewares()
 
         this.app.listen(this.port, () => {
             console.log(`server is running on port ${this.port}`)

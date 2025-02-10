@@ -26,7 +26,8 @@
         "ioredis": "^5.5.0",
         "koa": "^2.15.3",
         "koa-bodyparser": "^4.4.1",
-        "tsconfig-paths": "^4.2.0"
+        "tsconfig-paths": "^4.2.0",
+        "yup": "^1.6.1"
     },
     "devDependencies": {
         "@types/koa": "^2.15.0",
