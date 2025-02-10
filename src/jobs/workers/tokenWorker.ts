@@ -3,7 +3,7 @@ import { Worker, Job } from "bullmq";
 import GenerateToken from "../GenerateToken";
 import RefreshToken from "../RefreshToken";
 
-const tableWorker = new Worker('token-queue', async (job: Job) => {
+new Worker('token-queue', async (job: Job) => {
     try {
         switch (job.name) {
             case "generateToken":

@@ -7,6 +7,11 @@ const bhutIntegrationAxios = axios.create({
     }
 })
 
+const localAxios = axios.create({
+    baseURL: 'http://app:3000'
+})
+
 export {
-    bhutIntegrationAxios
+    bhutIntegrationAxios,
+    localAxios
 }

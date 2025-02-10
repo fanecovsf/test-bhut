@@ -27,6 +27,7 @@
         "koa": "^2.15.3",
         "koa-bodyparser": "^4.4.1",
         "tsconfig-paths": "^4.2.0",
+        "uuid": "^11.0.5",
         "yup": "^1.6.1"
     },
     "devDependencies": {

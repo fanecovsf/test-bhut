@@ -1,7 +1,9 @@
 import { Context } from "koa";
 import { bhutIntegrationAxios } from "@/config/axios";
 import { redis } from "@/jobs/config/redis";
-import { AxiosError } from "axios";
+import vehicleQueue from "@/jobs/queues/vehicleQueue";
+import { vehicleCreationSchema } from "@/schemas/Vehicle.schema";
+import errorHandler from "@/utils/errorHandler";
 
 
 export default class IntegrationController {
@@ -23,11 +25,7 @@ export default class IntegrationController {
             }
             return
         } catch (e) {
-            ctx.status = 500
-            ctx.body = {
-                message: 'internal server error',
-                cause: String(e)
-            }
+            errorHandler(e as Error, ctx)
             return
         }
     }
@@ -60,11 +58,7 @@ export default class IntegrationController {
                 return
             }
         } catch (e) {
-            ctx.status = 500
-            ctx.body = {
-                message: 'internal server error',
-                cause: String(e)
-            }
+            errorHandler(e as Error, ctx)
             return
         }
     }
@@ -82,6 +76,7 @@ export default class IntegrationController {
             }
 
             const data = ctx.request.body;
+            await vehicleCreationSchema.validate(data)
 
             const req = await bhutIntegrationAxios.post(
                 '/v1/carro',
@@ -93,6 +88,11 @@ export default class IntegrationController {
                 }
             )
 
+            vehicleQueue.add('vehicleLog', {
+                car_id: req.data['id'],
+                data_hora_criacao: new Date().toISOString()
+            })
+
             ctx.status = 201;
             ctx.body = {
                 message: 'vehicle created',
@@ -100,17 +100,7 @@ export default class IntegrationController {
             }
             return
         } catch (e) {
-            if (e instanceof AxiosError) {
-                ctx.status = e.response?.status || 500,
-                ctx.body = e.request?.data
-                return
-            }
-            
-            ctx.status = 500
-            ctx.body = {
-                message: 'internal server error',
-                cause: String(e)
-            }
+            errorHandler(e as Error, ctx)
             return
         }
     }

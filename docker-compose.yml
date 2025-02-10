@@ -35,3 +35,14 @@ services:
       - ./.env.prod
     depends_on:
       - redis
+
+  vehicle-worker:
+    build:
+      context: .
+      dockerfile: ./src/Dockerfile
+    container_name: vehicle-worker
+    command: ["pm2-runtime", "start", "/usr/src/jobs/workers/vehicleWorker.ts", "--interpreter", "tsx", "--instances", "1"]
+    env_file:
+      - ./.env.prod
+    depends_on:
+      - redis
