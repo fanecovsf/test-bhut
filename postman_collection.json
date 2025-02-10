@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "e2d7f4d3-b172-4471-8ac4-12df4d691f94",
+		"name": "Teste BHUT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28757974"
+	},
+	"item": [
+		{
+			"name": "Integração",
+			"item": [
+				{
+					"name": "Token",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/integration/token",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"integration",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cars",
+			"item": [
+				{
+					"name": "Get cars",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/v1/integration/api/car",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"integration",
+								"api",
+								"car"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create car",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nome\": \"Etios\",\n    \"marca\": \"Toyota\",\n    \"preco\": 49999.99,\n    \"anoFabricacao\": 2016 \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/v1/integration/api/car",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"v1",
+								"integration",
+								"api",
+								"car"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logs",
+			"item": [
+				{
+					"name": "Get Logs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/logs",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"logs"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
